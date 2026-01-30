@@ -13,10 +13,7 @@ import java.util.Scanner;
  * @author hadwa01
  */
 public class FormJava {
-    
-    
-    
-
+  
     /**
      * @param args the command line arguments
      */
