@@ -19,40 +19,39 @@ import java.util.ArrayList;
  */
 //Den här koden connectar till både kontaktframe och kontakt för att underlätt vår arbete. 
 public class FileManager {
-    public void saveToFile(ArrayList<Form>list){
-       try{ 
-        FileOutputStream fileOut = new
-        FileOutputStream ("savedFormerLista.ser");{
-        ObjectOutputStream out = new ObjectOutputStream(fileOut); 
-        out.writeObject(list);
-        out.flush();
-        out.close();
-        fileOut.close();
-}
-       }catch(IOException ex) {
 
+    public void saveToFile(ArrayList<Form> list) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("savedFormerLista.ser");
+            {
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(list);
+                out.flush();
+                out.close();
+                fileOut.close();
+            }
+        } catch (IOException ex) {
+
+        }
     }
-    }
-    
-    public ArrayList<Form> readFromFile(){
-       ArrayList<Form> list=null;
-       try{
-           
- 
-           FileInputStream fileIn = new 
-              FileInputStream("savedFormerLista.ser"); {
-              ObjectInputStream oin = new ObjectInputStream(fileIn);
-             //  oin = new ObjectInputStream(fileIn);
-               list = (ArrayList<Form>) oin.readObject();
-               oin.close();
-           }
-       }catch(IOException ie){
-           System.out.println("IOException is caught");
-       }catch (ClassNotFoundException ex) {
+
+    public ArrayList<Form> readFromFile() {
+        ArrayList<Form> list = null;
+        try {
+
+            FileInputStream fileIn = new FileInputStream("savedFormerLista.ser");
+            {
+                ObjectInputStream oin = new ObjectInputStream(fileIn);
+                //  oin = new ObjectInputStream(fileIn);
+                list = (ArrayList<Form>) oin.readObject();
+                oin.close();
+            }
+        } catch (IOException ie) {
+            System.out.println("IOException is caught");
+        } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
 
-      
         return list;
     }
 

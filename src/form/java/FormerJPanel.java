@@ -7,17 +7,18 @@ package form.java;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author hadwa01
  */
-public class FormerJPanel extends javax.swing.JPanel implements Runnable { 
-private volatile Thread trad;
+public class FormerJPanel extends javax.swing.JPanel implements Runnable {
+
+    private volatile Thread trad;
 
     ArrayList<Form> Former = new ArrayList<>();
     FileManager fmgr = new FileManager();
-    private boolean running=false;
+    private boolean running = false;
+
     /**
      * Creates new form FormerJPanel
      */
@@ -147,7 +148,7 @@ private volatile Thread trad;
     }//GEN-LAST:event_btnRensaActionPerformed
 
     private void rbtnTriangelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnTriangelActionPerformed
-       
+
     }//GEN-LAST:event_rbtnTriangelActionPerformed
 
     private void rbtnRektangelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRektangelActionPerformed
@@ -155,7 +156,7 @@ private volatile Thread trad;
     }//GEN-LAST:event_rbtnRektangelActionPerformed
 
     private void rbtnCircelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnCircelActionPerformed
-       
+
     }//GEN-LAST:event_rbtnCircelActionPerformed
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
@@ -163,64 +164,56 @@ private volatile Thread trad;
         int y = evt.getY();
         int b = (int) (Math.random() * 101);
         int h = (int) (Math.random() * 101);
-        
-        if(rbtnCircel.isSelected()){
-             Form c = new Circel(x-h/2, y-h/2, h, true);
-             c.setRunning(running);
-        Former.add(c);
+
+        if (rbtnCircel.isSelected()) {
+            Form c = new Circel(x - h / 2, y - h / 2, h, true);
+            c.setRunning(running);
+            Former.add(c);
+        } else if (rbtnRektangel.isSelected()) {
+            Form r = new Rektangel(x - b / 2, y - h / 2, b, h, true);
+            r.setRunning(running);
+            Former.add(r);
+        } else if (rbtnTriangel.isSelected()) {
+            Form t = new Triangel(x - b / 2, y + h / 2, b, h, true);
+            t.setRunning(running);
+            Former.add(t);
         }
-        else if(rbtnRektangel.isSelected()){
-             Form r = new Rektangel(x-b/2, y-   h/2, b, h, true);
-             r.setRunning(running);
-        Former.add(r);
-        }
-        
-        else if(rbtnTriangel.isSelected()){
-             Form t = new Triangel(x-b/2, y+h/2, b, h, true);
-             t.setRunning(running);
-        Former.add(t);
-        }
-        
-        
+
         repaint();
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_formMouseClicked
 
     private void btnHämtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHämtaActionPerformed
-     Former = fmgr.readFromFile();
-     repaint();
+        Former = fmgr.readFromFile();
+        repaint();
     }//GEN-LAST:event_btnHämtaActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-       fmgr.saveToFile(Former);
-       
+        fmgr.saveToFile(Former);
+
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnStartStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartStopActionPerformed
-       if(this.btnStartStop.getText().equals("Start")){
-           this.btnStartStop.setText("Stop");
-       start();
-       }
-       else{
-           this.btnStartStop.setText("Start");
-           stop();
-       }
-       for (int i = 0; i < Former.size(); i++) {
-            
+        if (this.btnStartStop.getText().equals("Start")) {
+            this.btnStartStop.setText("Stop");
+            start();
+        } else {
+            this.btnStartStop.setText("Start");
+            stop();
+        }
+        for (int i = 0; i < Former.size(); i++) {
+
             Former.get(i).setRunning(running);
         }
-       repaint();
+        repaint();
     }//GEN-LAST:event_btnStartStopActionPerformed
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (int i = 0; i < Former.size(); i++) {
-            
+
             Former.get(i).draw(g);
         }
 
@@ -237,8 +230,7 @@ private volatile Thread trad;
     private javax.swing.JRadioButton rbtnTriangel;
     // End of variables declaration//GEN-END:variables
 
-    
-private void start() {
+    private void start() {
         if (trad == null) {
             trad = new Thread(this);
             trad.start();
@@ -264,7 +256,5 @@ private void start() {
             repaint();
         }
     }
-
-
 
 }

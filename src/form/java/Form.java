@@ -4,7 +4,6 @@
  */
 package form.java;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -14,7 +13,7 @@ import java.io.Serializable;
  *
  * @author hadwa01
  */
-public abstract class Form implements Serializable{
+public abstract class Form implements Serializable {
 
     protected int xPos;
     protected int yPos;
@@ -58,17 +57,17 @@ public abstract class Form implements Serializable{
 
     }
     boolean Höger = false;
-    public void move(int x,int y){
-        if(Höger){
-            xPos +=5;
-            if(xPos>=550){
-                Höger=false;
+
+    public void move(int x, int y) {
+        if (Höger) {
+            xPos += 5;
+            if (xPos >= 550) {
+                Höger = false;
             }
-        }
-        else{
-            xPos-=5;
-            if(xPos<=000){
-                Höger=true;
+        } else {
+            xPos -= 5;
+            if (xPos <= 000) {
+                Höger = true;
             }
         }
     }

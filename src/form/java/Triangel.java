@@ -27,8 +27,9 @@ public class Triangel extends Form {
 
     @Override
     public void draw(Graphics g) {
-        if(running)
-         move(0,0);
+        if (running) {
+            move(0, 0);
+        }
         int[] xPoints = {xPos, xPos + bas / 2, xPos + bas};
         int[] yPoints = {yPos, yPos - höjd, yPos};
         g.setColor(color);
